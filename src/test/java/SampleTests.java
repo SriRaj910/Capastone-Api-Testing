@@ -99,8 +99,8 @@ public class SampleTests {
                     .post("https://dummyapi.io/data/v1/post/create")
                 .then()
                     .statusCode(200)
-                    .log().body();
-
+                    .log().body()
+                    .body("text",Matchers.equalTo("New post-rr"));
 
 
 
