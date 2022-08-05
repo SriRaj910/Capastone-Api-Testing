@@ -31,7 +31,7 @@ public class SampleTests {
                         "  \"firstName\": \"Rohan\",\n" +
                         "  \"lastName\": \"Patel\",\n" +
                         "  \"picture\": \"https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80\",\n" +
-                        "  \"email\": \"suyashsrivastav967@gmail.com\"\n" +
+                        "  \"email\": \"suyashsrivastav968@gmail.com\"\n" +
                         "}")
                 .when()
                 .post("https://dummyapi.io/data/v1/user/create")
@@ -105,6 +105,36 @@ public class SampleTests {
 
 
     }
+
+    @Test
+    public void getPostById(){
+        given()
+                .header("app-id", "62ec52e349dc977737dae934")
+                .when()
+                    .get("https://dummyapi.io/data/v1/user/62ec5c993988eed1745e4997/post?limit=10\n" +
+                        "\n")
+                .then()
+                    .statusCode(200)
+
+                    .log().body();
+
+    }
+
+    @Test
+    public void deletePost(){
+        given()
+                .header("app-id", "62ec52e349dc977737dae934")
+                .when()
+                    .delete("https://dummyapi.io/data/v1/post/62ec861953d58ef8c1838403" )
+                .then()
+                    .statusCode(200)
+
+                    .log().body();
+
+
+    }
+
+
 }
 
 
