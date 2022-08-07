@@ -10,12 +10,29 @@ repositories {
 }
 
 dependencies {
-    testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
-    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '4.4.0'
+    // Use TestNG framework, also requires calling test.useTestNG() below
+    implementation "org.testng:testng:7.4.0"
+
+    //rest assured
+    implementation group: 'io.rest-assured', name: 'rest-assured', version: '5.1.1'
+
+    //jackson
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.3'
+    annotationProcessor group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.3'
+
+
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
 
 }
 
-test {
+
+
+
+tasks.named('test') {
+    // Use TestNG for unit tests.
     useTestNG()
 }
+
+

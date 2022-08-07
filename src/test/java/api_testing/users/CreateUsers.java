@@ -1,8 +1,11 @@
-import io.restassured.http.ContentType;
+package api_testing.users;
+
+import api_testing.users.create.User;
+import api_testing.users.create.response.CreateUserResponse;
+import api_testing.users.UsersClient;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import users.UsersClient;
-import users.create.CreateUserRequestBody;
 
 import java.util.UUID;
 
@@ -25,18 +28,16 @@ public class CreateUsers {
         String picture="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80";
 
 
-        String body =String.format( "{\n" +
-                "  \"title\": \""+title+"\",\n" +
-                "  \"firstName\": \""+firstName+"\",\n" +
-                "  \"lastName\": \""+lastName+"\",\n" +
-                "  \"picture\": \""+picture+"\",\n" +
-                "  \"email\": \"%s\"\n" +
-                "}",email);
-        CreateUserRequestBody createUserRequestBody=new CreateUserRequestBody(title,firstName,lastName,picture,email);
-        usersClient.createUser(createUserRequestBody)
-                .then()
-                .statusCode(200)
-                .log().body();
+
+        //CreateUserRequestBody createUserRequestBody=new CreateUserRequestBody(title,firstName,lastName,picture,email);
+        User user = User.builder().title(title).firstName(firstName).lastName(lastName).picture(picture).email(email).build();
+        CreateUserResponse createUserResponse = usersClient.createUser(user);
+
+        Assert.assertEquals(createUserResponse.getStatusCode(),200);
+        Assert.assertNotNull(createUserResponse.getId());
+        Assert.assertEquals(createUserResponse.getEmail(),user.getEmail());
+
+
 
     }
 

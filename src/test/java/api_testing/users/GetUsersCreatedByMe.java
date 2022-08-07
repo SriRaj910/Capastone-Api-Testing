@@ -1,3 +1,6 @@
+package api_testing.users;
+
+
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
