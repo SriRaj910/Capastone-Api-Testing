@@ -15,7 +15,7 @@ public class DeletePostByID {
     }
     @Test(priority = 3)
     public void deletePost(){
-        String id = "62efe48a2378bd5e0fa1613c";   //post id is required here
+        String id = "62efe6fc84633d4a8c411251";   //post id is required here
         Response response = postsClient.deletePost(id);
         response
                 .then()

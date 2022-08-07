@@ -16,7 +16,7 @@ public class GetPostByID {
     }
     @Test (priority = 2)
 public void getPostById(){
-        String id = "62efe48a2378bd5e0fa1613c"; //post id is required here
+        String id = "62efe6fc84633d4a8c411251"; //post id is required here
         //user id 62ec5c993988eed1745e4997
         //post id 62efe48a2378bd5e0fa1613c
         CreatePostResponse postResponse= postsService.getPost(id);
